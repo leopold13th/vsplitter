@@ -1,8 +1,13 @@
+#include <iostream>
+
 #include "mainwindow.h"
+#include "build_number.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
+    std::cout << "vsplitter v0.1 (build " << BUILD << ")\n";
+
     QApplication app(argc, argv);
 
     // Qt sets the locale in the QApplication constructor, but libmpv requires

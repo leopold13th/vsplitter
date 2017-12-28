@@ -35,7 +35,16 @@ SOURCES += \
 
 HEADERS += \
         mainwindow.h \
-        utils.h
+        utils.h \
+        build_number.h
 
 FORMS += \
         mainwindow.ui
+
+
+#BUILDNO = $$(../vsplitter/build_number.sh)
+#DEFINES += BUILD=$${BUILDNO}
+build_nr.commands = ../vsplitter/build_number.sh
+build_nr.depends = FORCE
+QMAKE_EXTRA_TARGETS += build_nr
+PRE_TARGETDEPS += build_nr
