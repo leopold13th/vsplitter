@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                cp '../build-vsplitter-Desktop-Debug/vsplitter' ~/bin/
+                sh 'cp ../build-vsplitter-Desktop-Debug/vsplitter ~/bin/'
+                echo 'OK'
             }
         }
     }
