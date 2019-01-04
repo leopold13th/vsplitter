@@ -75,7 +75,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //        mpv_command_async(mpv, 0, args);
 //    }
 
-    marks << 8.16 << 35.0 << 85.23;
+//    marks << 8.16 << 35.0 << 85.23;
     for (int i = 0; i < marks.size(); ++i)
     {
         std::stringstream ss;
@@ -193,12 +193,12 @@ void MainWindow::on_actionSave_triggered()
     double prev = 0;
     for (int i = 0; i < marks.size(); ++i)
     {
-        ss << "ffmpeg -i " << v_filename.toUtf8().constData() << " -ss " << prev << " -t " << marks.at(i)-prev
-           << " -c copy " << v_filename_nosuffix.toUtf8().constData() << "_part" << i+1 << "." << suffix.toUtf8().constData() << "\n";
+        ss << "ffmpeg -i \"" << v_filename.toUtf8().constData() << "\" -ss " << prev << " -t " << marks.at(i)-prev
+           << " -c copy \"" << v_filename_nosuffix.toUtf8().constData() << "_part" << i+1 << "." << suffix.toUtf8().constData() << "\"\n";
         prev = marks.at(i);
     }
-    ss << "ffmpeg -i " << v_filename.toUtf8().constData() << " -ss " << prev << " -t 100000000 -c copy "
-       << v_filename_nosuffix.toUtf8().constData() << "_part" << marks.size()+1 << "." << suffix.toUtf8().constData() << "\n";
+    ss << "ffmpeg -i \"" << v_filename.toUtf8().constData() << "\" -ss " << prev << " -t 100000000 -c copy \""
+       << v_filename_nosuffix.toUtf8().constData() << "_part" << marks.size()+1 << "." << suffix.toUtf8().constData() << "\"\n";
 
     std::ofstream fout;
     fout.open((v_filename+".sh").toUtf8().constData(), std::ios::out);
